@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>组件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<button-counter></button-counter>
+	<button-counter></button-counter>
+	<button-counter></button-counter>
+
+	<ul :style="{fontSize: fontSize + 'em'}">
+		<game v-for="(item,index) in games" :index="index" :key="item.key" :title="item.title" @change-font-up="changeFontSize"></game>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	Vue.component('button-counter', {
+		data: function () {
+			return {
+				count:0
+			}
+		},
+		template: '<button @click="count++">你点击了我 {{ count }} 次</button>'
+	});
+	Vue.component('game', {
+		template: '<li>{{ title }} <button @click="$emit(\'change-font-up\', Math.random())">字体放大</button></li>',
+		props: ['title']
+	});
+	var app = new Vue({
+		el: "#app",
+		data: {
+			fontSize: 1,
+			games: [
+				{
+					id: 1,
+					title: '大唐仙域'
+				},
+				{
+					id: 2,
+					title: '植物大战僵尸OL'
+				},
+				{
+					id: 3,
+					title: '盛世三国'
+				}
+			]
+		},
+		methods: {
+			changeFontSize: function (size) {
+				this.fontSize += size;
+			}
+		}
+	});
+</script>
+</body>
+</html>
