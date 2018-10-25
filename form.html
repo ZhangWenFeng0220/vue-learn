@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表单</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<input type="checkbox" value="小明" v-model="checkedNames"> <label for="小明">小明</label>
+	<input type="checkbox" value="小天" v-model="checkedNames"> <label for="小天">小天</label>
+	<input type="checkbox" value="小白" v-model="checkedNames"> <label for="小白">小白</label>
+	<br>
+	选中的有： {{ checkedNames }}
+</div>
+
+<script type="text/javascript">
+	var app = new Vue({
+		el: "#app",
+		data: {
+			checkedNames: []
+		}
+	});
+</script>
+</body>
+</html>
