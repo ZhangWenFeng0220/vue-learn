@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<style type="text/css">
+		.app{
+			padding-top: 20px; 
+		}
+	</style>
+</head>
+<body>
+<div id="app" class="app">
+	{{message}}
+</div>
+
+<div id="app2" class="app" v-bind:title="message">
+	鼠标悬停几秒钟查看此处动态绑定的提示信息！
+</div>
+
+<div id="app3" class="app">
+	<p v-if="seen"> 你看到我了吗？</p>
+</div>
+
+<div id="app4" class="app">
+	<ul>
+		<li v-for="item in list">{{item.title}}</li>
+	</ul>
+</div>
+
+<div id="app5" class="app">
+	{{message}}
+	<button v-on:click="reverseMessage">逆转信息</button>
+</div>
+
+<div id="app6" class="app">
+	{{message}}<br>
+	<input v-model="message">
+</div>
+
+<div id="app7" class="app">
+	<ul>
+		<todo-item v-for="item in data_list" v-bind:todo="item"></todo-item>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	
+	Vue.component('todo-item', {
+		props: ['todo'],
+		template: "<li>{{todo.title}}</li>"
+	});
+
+	var app7_data_list = [
+		{
+			"id": "1",
+			"title": "羽毛球"
+		},
+		{
+			"id": "2",
+			"title": "篮球"
+		},
+		{
+			"id": "3",
+			"title": "足球"
+		}
+	];
+
+	var app7 = new Vue({
+		el: "#app7",
+		data: {
+			data_list: app7_data_list
+		}
+	});
+
+	var app6 = new Vue({
+		el: "#app6",
+		data: {
+			message: ""
+		}
+	});
+
+	var app5 = new Vue({
+		el: "#app5",
+		data: {
+			message: "我爱祖国"
+		},
+		methods: {
+			reverseMessage: function () {
+				this.message = this.message.split('').reverse().join('');
+			}
+		}
+	});
+
+	var app = new Vue({
+		el: "#app",
+		data: {
+			message: "Hello World!"
+		}
+	});
+
+	var app2 = new Vue({
+		el: "#app2",
+		data: {
+			message: '页面加载于' + new Date().toLocaleString()
+		}
+	});
+
+	var app3 = new Vue({
+		el: "#app3",
+		data: {
+			seen: true
+		}
+	});
+
+	var app4 = new Vue({
+		el: "#app4",
+		data: {
+			list: [
+				{
+					'title': 'Hello'
+				},
+				{
+					'title': "World"
+				}
+			]
+		}
+	});
+</script>
+</body>
+</html>
