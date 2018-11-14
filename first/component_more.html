@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>组件详情</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<template>
+  <div class="home">
+    <mytest  :title="title" :massgae="massgae"></mytest>
+  </div>
+</template>
+<script>
+new Vue({
+	name: 'home',
+	  data () {
+	    return {
+	      title:'title1111',
+	      massgae:'message111'
+	    }
+	  },
+	  components:{
+	    'mytest':{
+	      template:`<div>这是个h1标题{{title}}</div>`,
+	      props:['title'],
+	      data(){
+	        return{
+	          mag:'111'
+	        }
+	      },
+	      created:function(){
+	        console.log(this.$attrs)//注意这里
+	      }
+	    }
+	  }
+});
+</script>
+</body>
+</html>

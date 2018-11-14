@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>条件渲染</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<template v-if="ok">
+			<h1>123</h1>
+		</template>
+
+		<div v-if="Math.random() > 0.5">大于0.5，你看见我拉</div>
+		<div v-else>我消失了</div>
+	</div>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: {
+				ok: true
+			}
+		});
+	</script>
+</body>
+</html>

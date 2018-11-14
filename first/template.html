@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模板语法</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app1">
+		<ul>
+			<li v-once>{{ once }}</li>
+			<li><b v-html="html"></b></li>
+		</ul>
+		<button :disabled="isButtonDisabled" @click="changeButton">特性测试，是否禁用： {{ isButtonDisabled ? "Yes" : "No" }}</button>
+
+		<a: href="url" target="_blank">百度</a>
+	</div>
+
+	<script type="text/javascript">
+		var app1 = new Vue({
+			el: "#app1",
+			data: {
+				once: 213,
+				html: "<b>Hello World!</b>",
+				isButtonDisabled: false,
+				url: "https://www.baidu.com"
+			},
+			methods: {
+				changeButton: function () {
+					this.isButtonDisabled = !this.isButtonDisabled;
+					console.log(123);
+				}
+			}
+		});
+	</script>
+</body>
+</html>

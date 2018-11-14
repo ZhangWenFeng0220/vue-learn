@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue-介绍</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<span :title="message">鼠标悬停几秒钟查看此处动态绑定的提示信息！</span>
+
+	<div v-if="seen">你看到我了吗（整个DOM的显示/否）</div>
+
+	<div v-show="is_show">你看到我了吗（整个DOM的显示/否）</div>
+
+	<ul>
+		<li v-for="item in items">{{  item.name }}</li>
+	</ul>
+
+	<div class="form">
+		<span>{{ name }}</span>
+		<input type="" name=""  v-model="name">
+	</div>
+
+	<ul>
+		<todo-item v-for="item in items" :item="item"></todo-item>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	Vue.component("todo-item", {
+		props: ["item"],
+		template: "<li>{{  item.name }}</li>"
+	})
+	var app = new Vue({
+		el: "#app",
+		data: {
+			message: '页面加载于 ' + new Date().toLocaleString(),
+			seen: false,
+			is_show: false,
+			items: [
+				{
+					id: 1,
+					name: "小明"
+				},
+				{
+					id: 2,
+					name: "小红"
+				},
+				{
+					id: 3,
+					name: "小百"
+				}
+			],
+			name: "章文丰"
+		}
+	});
+</script>
+</body>
+</html>

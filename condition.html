@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>条件渲染</title>
+	<title>Vue-条件</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-	<div id="app">
-		<template v-if="ok">
-			<h1>123</h1>
-		</template>
-
-		<div v-if="Math.random() > 0.5">大于0.5，你看见我拉</div>
-		<div v-else>我消失了</div>
-	</div>
-
-	<script type="text/javascript">
-		var app = new Vue({
-			el: "#app",
-			data: {
-				ok: true
+<div id="app">
+	<template v-if="loginType === 'username'">
+		<label>用户名</label>
+  		<input placeholder="输入用户名" key='username'>
+	</template>
+	<template v-else>
+		<label>邮箱</label>
+  		<input placeholder="输入邮箱" key='email'>
+	</template>
+	<button @click="changeLogin()">修改登录方式</button>
+</div>
+<script type="text/javascript">
+	var app = new Vue({
+		el: "#app",
+		data: {
+			loginType: "username"
+		},
+		methods: {
+			changeLogin: function () {
+				if (this.loginType === 'username') {
+					this.loginType = 'email';
+				} else {
+					this.loginType = 'username';
+				}
 			}
-		});
-	</script>
+		}
+	});
+</script>
 </body>
 </html>

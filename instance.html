@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Vue实例</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<title>Vue-实例</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+<div id="app">
+	{{ message }}
+</div>
+
 <script type="text/javascript">
-	new Vue({
+	var app = new Vue({
+		el: "#app",
 		data: {
-			a: 1
+			message: "Hello World!"
 		},
 		created: function () {
-			console.log("this a is:" + this.a);
+			console.log("实例创建");
+		},
+		mounted: function () {
+			console.log("实例安装");
+		},
+		updated: function () {
+			console.log("实例更新");
+		},
+		destroyed: function () {
+			console.log("实例销毁");
 		}
+	});
+
+	app.$watch("message", function (newVaule, oldVaule) {
+		console.log(newVaule);
+		console.log(oldVaule);
 	});
 </script>
 </body>

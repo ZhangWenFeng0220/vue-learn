@@ -1,36 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>模板语法</title>
+	<title>Vue-模板语法</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-	<div id="app1">
-		<ul>
-			<li v-once>{{ once }}</li>
-			<li><b v-html="html"></b></li>
-		</ul>
-		<button :disabled="isButtonDisabled" @click="changeButton">特性测试，是否禁用： {{ isButtonDisabled ? "Yes" : "No" }}</button>
-
-		<a: href="url" target="_blank">百度</a>
+<div id="app">
+	<div class="text">
+		<span>文本： {{ message }}</span>
 	</div>
+	<div class="ohtml">
+		<p>原始HTML： {{ html }}</p>
+		<p>HTML：<span v-html="html"></span> </p>
+	</div>
+	<div class="spe">
+		<span>特性</span>
+	</div>
+	<div class="ojc">
+		<p>使用 JavaScript 表达式</p>
+		<p>number +１: {{ number+1 }}</p>
+		<p>{{ number == 1 ? "Yes" : "No" }}</p>
+		<p>{{ message.split('').reverse().join('') }}</p>
+	</div>
+	<div class="instruct">
+		<span v-on:click="instruct()">指令</span>
+	</div>
+	<div class="param">
+		<span>参数</span>
+		<a target="_blank" v-bind:href="url">跳转到百度</a>
+	</div>
+	<div class="param">
+		<span>修饰符</span>
+		<form v-on:submit.prevent="onSubmit()">
+			<button>提交</button>
+		</form>
+	</div>
+</div>
 
-	<script type="text/javascript">
-		var app1 = new Vue({
-			el: "#app1",
-			data: {
-				once: 213,
-				html: "<b>Hello World!</b>",
-				isButtonDisabled: false,
-				url: "https://www.baidu.com"
+<script type="text/javascript">
+	var app = new Vue({
+		el: "#app",
+		data: {
+			message: "Hello World!",
+			html: "<b style='color:red'>我是大红色</b>",
+			number: 1,
+			url: "http://www.baidu.com"
+		},
+		methods: {
+			instruct: function () {
+				alert('这是一个指令')
 			},
-			methods: {
-				changeButton: function () {
-					this.isButtonDisabled = !this.isButtonDisabled;
-					console.log(123);
-				}
+			onSubmit: function () {
+				alert("提交表单");
+				this.message = this.message.split("").reverse().join("");
 			}
-		});
-	</script>
+		}
+	});
+</script>
 </body>
 </html>

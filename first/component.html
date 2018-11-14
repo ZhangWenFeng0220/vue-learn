@@ -6,7 +6,7 @@
 </head>
 <body>
 <div id="app">
-	<button-counter></button-counter>
+	<button-counter :value="213"></button-counter>
 	<button-counter></button-counter>
 	<button-counter></button-counter>
 
@@ -17,12 +17,17 @@
 
 <script type="text/javascript">
 	Vue.component('button-counter', {
+		inheritAttrs: false,
 		data: function () {
 			return {
-				count:0
+				count:0,
+				name: "123"
 			}
 		},
-		template: '<button @click="count++">你点击了我 {{ count }} 次</button>'
+		template: '<button @click="count++">你点击了我 {{ count }} 次</button>',
+		created: function () {
+			console.log(this.$attrs);
+		}
 	});
 	Vue.component('game', {
 		template: '<li>{{ title }} <button @click="$emit(\'change-font-up\', Math.random())">字体放大</button></li>',

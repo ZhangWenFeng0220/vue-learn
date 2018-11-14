@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Class与Style绑定</title>
+	<title>Vue-Css</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style type="text/css">
+		.focus {
+			font-weight: 600;
+			font-size: 18px;
+		}
+		.red {
+			color: red !important;
+		}
+		.is-green {
+			color: green;
+		}
+	</style>
 </head>
 <body>
-<div id="app" class="staic" :class="classObject"></div>
-
+<div id="app">
+	<p :class="{'is-green': isActive, red:hasError}" :style="{ 'text-decoration':textDecoration }">{{ message }}</p>
+</div>
 <script type="text/javascript">
 	var app = new Vue({
 		el: "#app",
 		data: {
-			classObject: {
-				'active': true,
-				'text-danger': true
-			}
+			message: "Hello World!",
+			isActive: true,
+			hasError: false,
+			textDecoration: 'underline'
 		}
 	});
 </script>

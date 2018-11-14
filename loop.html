@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue-列表</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<ul>
+		<li v-for="(value, key, index) in dataObject">{{ index }}:{{ key }}:{{ value }}</li>
+	</ul>
+
+	新增游戏：<input type="" name="" placeholder="请输入游戏名称"><button @click="addNew()"></button>
+	<ul>
+		<li v-for="game in games" v-if="game.is_open">{{ game.title }}</li>
+	</ul>
+</div>
+<script type="text/javascript">
+	var app = new Vue({
+		el: "#app",
+		data: {
+			dataObject: {
+				name: "章文丰",
+				gender: "男"
+			},
+			games: [
+				{
+					id: 1,
+					title: "武动乾坤",
+					is_open: 1
+				},
+				{
+					id: 2,
+					title: "青云决",
+					is_open: 0
+				},
+				{
+					id: 1,
+					title: "九州行",
+					is_open: 1
+				}
+			]
+		}
+	});
+</script>
+</body>
+</html>
